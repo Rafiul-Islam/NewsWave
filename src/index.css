@@ -9,4 +9,9 @@
 body {
     margin: 0;
     font-family: 'Encode Sans', sans-serif;
+    background: #e8e8e8;
+}
+
+.clickable {
+    cursor: pointer;
 }
