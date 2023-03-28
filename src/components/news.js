@@ -1,22 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import NewsItem from "./newsItem";
-import db from '../db.json';
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "./loader";
 
-const News = () => {
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        setData(db);
-        console.log(db);
-    }, [])
+const News = ({news, totalNews, hasMore, getData}) => {
     return (
         <div className="row mx-0">
-            {
-                data && data.map(item =>
-                    <div className='col-xl-3 col-lg-4 col-md-6'>
-                        <NewsItem news={item}/>
-                    </div>
-                )
-            }
+            <InfiniteScroll
+                dataLength={news.length}
+                next={getData}
+                hasMore={hasMore}
+                loader={<Loader/>}
+            >
+                <div className='row mx-0'>
+                    {
+                        news && news.map(item =>
+                            <div key={item.url} className='col-xl-3 col-lg-4 col-md-6'>
+                                <NewsItem news={item}/>
+                            </div>)
+                    }
+                </div>
+            </InfiniteScroll>
         </div>
     );
 };
