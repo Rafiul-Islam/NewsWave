@@ -12,7 +12,7 @@ const Navbar = ({categories, selectedCategory, onCategoryChange}) => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                         {
                             categories && categories.map(category =>
                                 <li key={category} onClick={() => onCategoryChange(category)} className="nav-item">
@@ -22,6 +22,7 @@ const Navbar = ({categories, selectedCategory, onCategoryChange}) => {
                                 </li>
                             )
                         }
+
                     </ul>
                 </div>
             </div>

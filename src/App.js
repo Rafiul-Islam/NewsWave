@@ -53,7 +53,7 @@ const App = () => {
                     onCategoryChange={handleCategoryChange}
                 />
             }
-            <div className='container mt-2 pt-5'>
+            <div className='container mt-4'>
                 {
                     news &&
                     <News

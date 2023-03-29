@@ -1,10 +1,11 @@
 .news-card {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0 .5rem;
   cursor: pointer;
   transition: .4s;
-  height: 380px !important;
+  height: 420px !important;
   border-bottom: 5px solid transparent !important;
+  position: relative;
 
   img {
     width: 100%;
@@ -13,12 +14,19 @@
     transition: .4s;
   }
 
+  .badge{
+    position: absolute;
+    right: 0;
+  }
+
   &:hover {
     transform: translateY(-10px);
     border-bottom: 5px solid darkgreen !important;
   }
 
   .card-body {
+
+    position: relative;
 
     .card-title {
       font-size: 1.1rem;
@@ -31,13 +39,32 @@
     }
 
     .card-text {
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
       font-size: .9rem;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+    }
+
+    .author{
+      font-size: .75rem;
+      font-weight: 600;
+      color: #323233;
+      position: absolute;
+      bottom: 18px;
+      left: 10px;
+      font-style: italic;
+    }
+
+    .publishedAt{
+      font-size: .75rem;
+      font-weight: 600;
+      color: gray;
+      position: absolute;
+      bottom: -8px;
+      right: 10px;
     }
   }
 }
