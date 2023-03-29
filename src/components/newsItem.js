@@ -16,7 +16,7 @@ const NewsItem = ({news}) => {
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
                 <p className='publishedAt'>{formatDate(publishedAt)}</p>
-                <p className='author'>- {author}</p>
+                <p className='author'>- {author ? author : "Unknown"}</p>
             </div>
         </div>
     );
