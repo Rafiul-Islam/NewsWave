@@ -40,10 +40,6 @@ const App = () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
-
-    useEffect(() => {
-        fetchData();
     }, [selectedCategory]);
 
     return (
