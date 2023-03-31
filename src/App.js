@@ -44,6 +44,10 @@ const App = () => {
 
     useEffect(() => {
         fetchData();
+    }, []);
+
+    useEffect(() => {
+        fetchData();
     }, [selectedCategory, searchButtonClicked]);
 
     const handleSearchKeyType = (e) => {
