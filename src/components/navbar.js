@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/css/navbar.scss';
 
-const Navbar = ({categories, selectedCategory, onCategoryChange, onSearchKeyChange, onSearch}) => {
+const Navbar = ({categories, selectedCategory, onCategoryChange, onSearchKeyChange, onSearch, searchKey}) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-success py-3">
             <div className="container-fluid">
@@ -30,6 +30,7 @@ const Navbar = ({categories, selectedCategory, onCategoryChange, onSearchKeyChan
                             className="form-control me-2"
                             type="search"
                             placeholder="Search" aria-label="Search"
+                            value={searchKey}
                         />
                         <button onClick={onSearch} className="btn btn-outline-light" type="button">Search</button>
                     </div>

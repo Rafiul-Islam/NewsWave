@@ -37,9 +37,9 @@ const App = () => {
     const handleCategoryChange = (categoryName) => {
         setSearchKey("");
         setNews([]);
-        setSelectedCategory(categoryName);
         setPage(1);
         setHasMore(true);
+        setSelectedCategory(categoryName);
     }
 
     useEffect(() => {
@@ -67,6 +67,7 @@ const App = () => {
                     categories={categoriesList}
                     selectedCategory={selectedCategory}
                     onCategoryChange={handleCategoryChange}
+                    searchKey={searchKey}
                     onSearchKeyChange={handleSearchKeyType}
                     onSearch={handleSearch}
                 />
