@@ -1,5 +1,7 @@
+const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+
 const api = {
-    baseApiEndPoint: `https://newsapi.org/v2/top-headlines?apiKey=${process.env.REACT_APP_API_KEY}&language=en`
+    baseApiEndPoint: `${proxyUrl}https://newsapi.org/v2/top-headlines?apiKey=${process.env.REACT_APP_API_KEY}&language=en`
 }
 
 export default api;
