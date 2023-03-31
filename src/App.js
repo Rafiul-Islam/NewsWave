@@ -30,7 +30,7 @@ const App = () => {
 
             data.articles.length < pageSize && setHasMore(false);
         } catch (e) {
-            toast.error(e.response.data);
+            toast.error("Something Unexpected Happened!", {toastId: 'error1'});
         }
     }
 
