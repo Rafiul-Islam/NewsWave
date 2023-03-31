@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/css/navbar.scss';
 
-const Navbar = ({categories, selectedCategory, onCategoryChange}) => {
+const Navbar = ({categories, selectedCategory, onCategoryChange, onSearchKeyChange, onSearch}) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-success py-3">
             <div className="container-fluid">
@@ -24,6 +24,15 @@ const Navbar = ({categories, selectedCategory, onCategoryChange}) => {
                         }
 
                     </ul>
+                    <div className="d-flex">
+                        <input
+                            onChange={onSearchKeyChange}
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="Search" aria-label="Search"
+                        />
+                        <button onClick={onSearch} className="btn btn-outline-light" type="button">Search</button>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -8,30 +8,34 @@ import {toast, ToastContainer} from "react-toastify";
 
 const App = () => {
 
-    const [categories, setCategories] = useState(categoriesList);
+    const categories = categoriesList;
     const [selectedCategory, setSelectedCategory] = useState("business");
     const [news, setNews] = useState([]);
-    const [totalNews, setTotalNews] = useState(0);
+    const [totalNews, setTotalNews] = useState();
     const [hasMore, setHasMore] = useState(true);
     const pageSize = 10
     const [page, setPage] = useState(1);
+    const [searchKey, setSearchKey] = useState("");
+    const [searchButtonClicked, setSearchButtonClicked] = useState(false);
 
     const fetchData = async () => {
         try {
-            const {data} = await http.get(`${api.baseApiEndPoint}&category=${selectedCategory}&pageSize=${pageSize}&page=${page}`);
+            const {data} = await http.get(`${api.baseApiEndPoint}&category=${selectedCategory}&pageSize=${pageSize}&page=${page}&q=${searchKey}`);
             if (data.articles.length === 0) setHasMore(false);
-            else {
-                setNews([...news, ...data.articles]);
-                setTotalNews(data.totalResults);
-                let newActivePage = page + 1;
-                setPage(newActivePage);
-            }
+
+            setNews([...news, ...data.articles]);
+            setTotalNews(data.totalResults);
+            let newActivePage = page + 1;
+            setPage(newActivePage);
+
+            data.articles.length < pageSize && setHasMore(false);
         } catch (e) {
             toast.error(e.response.data);
         }
     }
 
     const handleCategoryChange = (categoryName) => {
+        setSearchKey("");
         setNews([]);
         setSelectedCategory(categoryName);
         setPage(1);
@@ -40,7 +44,19 @@ const App = () => {
 
     useEffect(() => {
         fetchData();
-    }, [selectedCategory]);
+    }, [selectedCategory, searchButtonClicked]);
+
+    const handleSearchKeyType = (e) => {
+        setSearchKey(e.target.value);
+    }
+
+    const handleSearch = () => {
+        setPage(1);
+        setNews([]);
+        setHasMore(true);
+        setSelectedCategory("");
+        setSearchButtonClicked(!searchButtonClicked);
+    }
 
     return (
         <>
@@ -51,6 +67,8 @@ const App = () => {
                     categories={categoriesList}
                     selectedCategory={selectedCategory}
                     onCategoryChange={handleCategoryChange}
+                    onSearchKeyChange={handleSearchKeyType}
+                    onSearch={handleSearch}
                 />
             }
             <div className='container my-4'>
@@ -63,6 +81,7 @@ const App = () => {
                         getData={fetchData}
                     />
                 }
+                {totalNews === 0 && <h4>Sorry! No search result found!</h4>}
             </div>
         </>
     );
